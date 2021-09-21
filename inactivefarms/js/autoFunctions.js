@@ -146,7 +146,11 @@ function getLiqTotals(pid){
 
 async function getKinsLiq(pid){
 
-	let totalLiqInFarm = currentApeBusdToDefy * (pools[pid].lpInFarm)
+	let kinspoolInfo = await farmAuto.methods.poolInfo(0).call()
+    
+	let kinsInFarm = parseInt(kinspoolInfo.lpSupply) / 1e18
+
+	let totalLiqInFarm = currentApeBusdToDefy * (kinsInFarm)
 	
 //	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
 	$('.total-pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
