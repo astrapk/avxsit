@@ -382,18 +382,18 @@ let farmContract = undefined
 
 var pools = []
 //ApeSwap Pools	
-pools.push( { name: 'KINS', addr: "0x894Aa2D0D3e63471C5FfbD22a8A95C8476826cF9", ilp: false,
+pools.push( { name: 'KINS', addr: "", ilp: false,
 	token0: defy, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
-		pid: 0, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+		pid: '', userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 		
 
-pools.push( { name: 'APE-DEFY-BNB', addr: "0x672E8a4993dBec75ee61f125fdF82a3A45A71AcE", ilp: true,
+pools.push( { name: 'APE-DEFY-BNB', addr: "", ilp: true,
 	token0: wbnb, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0,
-		pid: 1, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+		pid:'' , userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 		
-pools.push( { name: 'APE-DEFY-BUSD', addr: "0x21336B7459e70764DdC44811cF03E0ca86d26d29", ilp: true,
+pools.push( { name: 'APE-DEFY-BUSD', addr: "", ilp: true,
 	token0: busd, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e6, lpTokenValueTotal: 0, 
-		pid: 2, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+		pid: '', userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 		
 //new Pools	
 pools.push( { name: 'KINS', addr: "0x894Aa2D0D3e63471C5FfbD22a8A95C8476826cF9", ilp: false,
@@ -474,7 +474,7 @@ async function userLoginAttempt(){
 
 async function initContracts(){
 	try{
-		for(let i = 0; i < pools.length; i++){
+		for(let i = 3; i < pools.length; i++){
 			await (pools[i].contract = new web3.eth.Contract(pools[i].ABI, pools[i].addr))
 			autoBalances(i)
 		}
@@ -503,7 +503,7 @@ function runUserStats() {
 	}
     setTimeout(() => {
         runUserStats()
-    }, 1000 * 30)
+    }, 1000 * 5)
 }
 
 // get balance of user and set it on the header 
@@ -527,9 +527,11 @@ async function checkAllowance(pid){
 	let allowance = await contract.methods.allowance(user.address, farmAddress).call()
 	//console.log("Pool "+pools[pid].name+" allowance: "+allowance/1e18+'.')
 	if(allowance > 1000000 * 1e18)
-		$('.approve-button-'+pid)[0].style.display = "none"
-	else if(allowance/1e18 < pools[pid].userBal || allowance == 0)
-		$('.deposit-button-'+pid)[0].style.display = "none"
+		$('.approve-button-'+pid)[0].style.display = "none" ,
+		$('.deposit-button-'+pid)[0].style.display = ""
+	 if(allowance <= 1000000 * 1e18)
+		$('.deposit-button-'+pid)[0].style.display = "none" ,
+		$('.approve-button-'+pid)[0].style.display = "" 
 }
 async function approve(pid){
 	let contract = pools[pid].contract
@@ -635,18 +637,21 @@ async function userInfo(pid){
 	pools[pid].userDep = parseInt(userInfo.deposit)
 	let userShare = amount / pools[pid].lpInFarm * 100
 	$('.userInfo-amount-'+pid)[0].innerHTML = " " +amount.toFixed(9)
-/*	$('.userInfo-value-'+pid)[0].innerHTML = " ~" +(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+"$" 
+	if(pid > 3){
+	$('.userInfo-value-'+pid)[0].innerHTML = " " +(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+"$" 
+	}
 	$('.userInfo-share-'+pid)[0].innerHTML = ' ' +userShare.toFixed(4)+"%"  
 	
-	if(amount > 1){
-		userInfoInt = setInterval(() => {
-			$('.userInfo-value-'+pid)[0].innerHTML =  " ~" +(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+"$"
+	if(pid == 3){
+
+			$('.userInfo-value-'+pid)[0].innerHTML =  " " +(amount * currentApeBusdToDefy).toFixed(2)+"$"
 			/*if(!$('.my-pool-'+pid)[0])
 				/*$('.my-lp-pools')[0].innerHTML += '<option class="my-pool-'+pid+'" value="'+pid+'">' +pools[pid].name+ ': '+amount.toFixed(4)+' (~'+(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+'$)</option>' *
 			$('.my-pool-'+pid)[0].innerHTML = ' ' + pools[pid].name+ ': '+amount.toFixed(4)+' (~'+(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+'$)'
-		}, 1000)
-	} */
+		*/
+	} 
 	
+	if(pid >3){
 	//ILP Stuff
 	if(userInfo.daysSinceDeposit > 10000 )
 		$('.userInfo-days-'+pid)[0].innerHTML = ' 0'
@@ -671,6 +676,7 @@ async function userInfo(pid){
 		if($('.userInfo-extra-'+pid)[0] != undefined)
 			$('.userInfo-extra-'+pid)[0].innerHTML = " N/A"
 	}
+}
 }
 /*function slideToFarm(pid){
 	console.log($('.my-pool-'+pid)[0].value)

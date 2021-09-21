@@ -14,7 +14,7 @@ async function autoContract() {
 		
 		let web3 = new Web3(fullNode, solidityNode, eventServer)
 			
-		for(let i = 0; i < pools.length; i++){
+		for(let i = 3; i < pools.length; i++){
 			await (pools[i].contract = new web3.eth.Contract(pools[i].ABI, pools[i].addr))
 			await (pools[i].swapContract = new web3.eth.Contract(pools[i].swapABI, pools[i].swapAddr))
 		}
@@ -36,7 +36,7 @@ async function autoContract() {
 		
 		await getApePrices()
 		
-		for(let i = 0; i < pools.length; i++){
+		for(let i = 3; i < pools.length; i++){
 			await autoBalances(i)
 			getLiqTotals(i)
 		}
@@ -57,7 +57,7 @@ async function autoContract() {
 function refreshStats(){
 	getSupply()
 	getApePrices()
-	for(i = 0; i < pools.length; i++){
+	for(i = 3; i < pools.length; i++){
 		autoBalances(i)
 		getLiqTotals(i)
 	}
