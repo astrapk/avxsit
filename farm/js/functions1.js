@@ -640,7 +640,7 @@ async function userInfo(pid){
 	if(pid > 3){
 	$('.userInfo-value-'+pid)[0].innerHTML = " " +(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+"$" 
 	}
-	$('.userInfo-share-'+pid)[0].innerHTML = ' ' +userShare.toFixed(4)+"%"  
+	//$('.userInfo-share-'+pid)[0].innerHTML = ' ' +userShare.toFixed(4)+"%"  
 	
 	if(pid == 3){
 
