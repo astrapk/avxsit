@@ -383,18 +383,30 @@ var pools = []
 //ApeSwap Pools	
 pools.push( { name: 'KINS', addr: "0x894Aa2D0D3e63471C5FfbD22a8A95C8476826cF9", ilp: false,
 	token0: defy, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
-		pid: 0, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+		pid: 3, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 		
 
 pools.push( { name: 'APE-DEFY-BNB', addr: "0x672E8a4993dBec75ee61f125fdF82a3A45A71AcE", ilp: true,
 	token0: wbnb, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0,
-		pid: 1, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+		pid: 4, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 		
 pools.push( { name: 'APE-DEFY-BUSD', addr: "0x21336B7459e70764DdC44811cF03E0ca86d26d29", ilp: true,
 	token0: busd, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e6, lpTokenValueTotal: 0, 
-		pid: 2, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+		pid: 5, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+		
+//new Pools	
+pools.push( { name: 'KINS', addr: "0x894Aa2D0D3e63471C5FfbD22a8A95C8476826cF9", ilp: false,
+	token0: defy, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
+		pid: 3, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 		
 
+pools.push( { name: 'APE-DEFY-BNB', addr: "0x672E8a4993dBec75ee61f125fdF82a3A45A71AcE", ilp: true,
+	token0: wbnb, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0,
+		pid: 4, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+		
+pools.push( { name: 'APE-DEFY-BUSD', addr: "0x21336B7459e70764DdC44811cF03E0ca86d26d29", ilp: true,
+	token0: busd, token1: defy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e6, lpTokenValueTotal: 0, 
+		pid: 5, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 				
 const user = {
     address: undefined,

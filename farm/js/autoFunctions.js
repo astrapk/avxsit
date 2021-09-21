@@ -107,7 +107,7 @@ async function getApePrices(){
 }
 async function autoBalances(pid){
 	let contract = pools[pid].contract
-    if(pid > 0){
+    if(pid > 3){
 	let swapContract = pools[pid].swapContract
 
 	rewardPerYear = parseInt(await farmAuto.methods.kinsPerBlock().call()) * 60 * 60 * 24 * 365 / 1e18
@@ -120,24 +120,24 @@ async function autoBalances(pid){
 	pools[pid].totalSupply = parseInt(await contract.methods.totalSupply().call()) / 1e18
     }
         
-	if(pid == 0){
+	if(pid == 3){
 		$('.pool-apy-'+pid)[0].innerHTML = '' + 0*(rewardPerYear / ( 10/1 * (pools[pid].lpInFarm)) * 100).toFixed(2) + '%'
 	}
-	if(pid == 1){
+	if(pid == 4){
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
 		$('.pool-apy-'+pid)[0].innerHTML = '' + 0*(rewardPerYear / ( 10/2 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
 	}
-    if(pid == 2){
+    if(pid == 5){
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
 		$('.pool-apy-'+pid)[0].innerHTML = '' + 0*(rewardPerYear / ( 10/2 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
 	}
 }
 function getLiqTotals(pid){
-	if(pid == 0)
+	if(pid == 3)
 		getKinsLiq(pid)
-	if(pid == 1)
+	if(pid == 4)
 		getApeDefyBnbLiq(pid)
-    if(pid == 2)
+    if(pid == 5)
 		getApeDefyBusdLiq(pid)
 
 
