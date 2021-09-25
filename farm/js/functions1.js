@@ -349,6 +349,8 @@ let farmAuto = undefined
 let defyAuto = undefined
 let wbnbAuto = undefined
 let busdAuto = undefined
+
+let elkAuto = undefined
 let ilpAuto = undefined
 
 
@@ -362,10 +364,19 @@ let defyBnbApeAuto = undefined
 const defyBusdApeAddress = "0x21336B7459e70764DdC44811cF03E0ca86d26d29"
 let defyBusdApeAuto = undefined
 
+const elkAvaxAddress = "0x2612dA8fc26Efbca3cC3F8fD543BCBa72b10aB59"
+let elkAvaxAuto = undefined
+
+const kinsElkAddress = "0xA8659F969eBEa8d3a362588c23d318bD521a48E0"
+let kinsElkAuto = undefined
+
 const network = 'https://api.avax.network/ext/bc/C/rpc'
 
 const defy = '0x894Aa2D0D3e63471C5FfbD22a8A95C8476826cF9'
 let defyContract = undefined
+
+const elk = '0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c'
+let elkContract = undefined
 
 const ilp = '0xF8707399BCf30b58FD276d44646dbF1cb6D28B31'
 let ilpContract = undefined
@@ -408,6 +419,10 @@ pools.push( { name: 'APE-DEFY-BNB', addr: "0x672E8a4993dBec75ee61f125fdF82a3A45A
 pools.push( { name: 'APE-DEFY-BUSD', addr: "0x21336B7459e70764DdC44811cF03E0ca86d26d29", ilp: true,
 	token0: defy, token1: busd, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e6, lpTokenValueTotal: 0, 
 		pid: 5, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+
+pools.push( { name: 'KINS-ELK', addr: "0xA8659F969eBEa8d3a362588c23d318bD521a48E0", ilp: true,
+	token0: defy, token1: elk, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
+		pid: 6, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 				
 const user = {
     address: undefined,
@@ -480,6 +495,7 @@ async function initContracts(){
 		}
 		await (defyContract = new web3.eth.Contract(defyABI, defy))
 		await (wbnbContract = new web3.eth.Contract(poolABI, wbnb))
+		await (elkContract = new web3.eth.Contract(defyABI, elk))
 		await (busdContract = new web3.eth.Contract(poolABI, busd))
 		await (ilpContract = new web3.eth.Contract(ilpABI, ilp))
 		await (farmContract = new web3.eth.Contract(farmABI, farmAddress))
