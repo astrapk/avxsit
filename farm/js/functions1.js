@@ -370,6 +370,30 @@ let elkAvaxAuto = undefined
 const kinsElkAddress = "0xA8659F969eBEa8d3a362588c23d318bD521a48E0"
 let kinsElkAuto = undefined
 
+const yakAvaxAddress = "0xb5c9e891AF3063004a441BA4FaB4cA3D6DEb5626"
+let yakAvaxAuto = undefined
+
+const kinsYakAddress = "0xec5f360ad7FD0DC3B355A28610E0c4180e460966"
+let kinsYakAuto = undefined
+
+const pngAvaxAddress = "0xd7538cABBf8605BdE1f4901B47B8D42c61DE0367"
+let pngAvaxAuto = undefined
+
+const kinsPngAddress = "0x8FF40569E921393cb726b47784349eE306E0593B"
+let kinsPngAuto = undefined
+
+const gbAvaxAddress = "0x7EC396ecbe2186BC7d624527C776a66C55Aa86d6"
+let gbAvaxAuto = undefined
+
+const kinsGbAddress = "0x9637FDAf9336998A926Db58DA5c5A3011ce057aF"
+let kinsGbAuto = undefined
+
+const joeAvaxAddress = "0x454E67025631C065d3cFAD6d71E6892f74487a15"
+let joeAvaxAuto = undefined
+
+const kinsJoeAddress = "0x0A44da57eCED3F21433dc9Ee345619274feE8Fc4"
+let kinsJoeAuto = undefined
+
 const network = 'https://api.avax.network/ext/bc/C/rpc'
 
 const defy = '0x894Aa2D0D3e63471C5FfbD22a8A95C8476826cF9'
@@ -377,6 +401,18 @@ let defyContract = undefined
 
 const elk = '0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c'
 let elkContract = undefined
+
+const yak = '0x59414b3089ce2af0010e7523dea7e2b35d776ec7'
+let yakContract = undefined
+
+const png = '0x60781c2586d68229fde47564546784ab3faca982'
+let pngContract = undefined
+
+const gb = '0x90842eb834cfd2a1db0b1512b254a18e4d396215'
+let gbContract = undefined
+
+const joe = '0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd'
+let joeContract = undefined
 
 const ilp = '0xF8707399BCf30b58FD276d44646dbF1cb6D28B31'
 let ilpContract = undefined
@@ -423,6 +459,22 @@ pools.push( { name: 'APE-DEFY-BUSD', addr: "0x21336B7459e70764DdC44811cF03E0ca86
 pools.push( { name: 'KINS-ELK', addr: "0xA8659F969eBEa8d3a362588c23d318bD521a48E0", ilp: true,
 	token0: defy, token1: elk, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
 		pid: 6, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+
+pools.push( { name: 'KINS-YAK', addr: "0xec5f360ad7FD0DC3B355A28610E0c4180e460966", ilp: true,
+	token0: defy, token1: yak, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
+		pid: 7, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+
+pools.push( { name: 'KINS-PNG', addr: "0x8FF40569E921393cb726b47784349eE306E0593B", ilp: true,
+	token0: defy, token1: png, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
+		pid: 8, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+
+pools.push( { name: 'KINS-GB', addr: "0x9637FDAf9336998A926Db58DA5c5A3011ce057aF", ilp: true,
+	token0: defy, token1: gb, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e9, lpTokenValueTotal: 0, 
+		pid: 9, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+
+pools.push( { name: 'KINS-JOE', addr: "0x0A44da57eCED3F21433dc9Ee345619274feE8Fc4", ilp: true,
+	token0: defy, token1: joe, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
+		pid: 10, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 				
 const user = {
     address: undefined,
@@ -496,6 +548,10 @@ async function initContracts(){
 		await (defyContract = new web3.eth.Contract(defyABI, defy))
 		await (wbnbContract = new web3.eth.Contract(poolABI, wbnb))
 		await (elkContract = new web3.eth.Contract(defyABI, elk))
+		await (yakContract = new web3.eth.Contract(defyABI, yak))
+		await (pngContract = new web3.eth.Contract(defyABI, png))
+		await (gbContract = new web3.eth.Contract(defyABI, gb))
+		await (joeContract = new web3.eth.Contract(defyABI, joe))
 		await (busdContract = new web3.eth.Contract(poolABI, busd))
 		await (ilpContract = new web3.eth.Contract(ilpABI, ilp))
 		await (farmContract = new web3.eth.Contract(farmABI, farmAddress))

@@ -24,6 +24,10 @@ async function autoContract() {
 		await (wbnbAuto = new web3.eth.Contract(wbnbABI, wbnb))
 		await (busdAuto = new web3.eth.Contract(wbnbABI, busd))
 		await (elkAuto = new web3.eth.Contract(defyABI, elk))
+		await (yakAuto = new web3.eth.Contract(defyABI, yak))
+		await (pngAuto = new web3.eth.Contract(defyABI, png))
+		await (gbAuto = new web3.eth.Contract(defyABI, gb))
+		await (joeAuto = new web3.eth.Contract(defyABI, joe))
 		await (ilpAuto = new web3.eth.Contract(ilpABI, ilp))
 		
     
@@ -33,6 +37,14 @@ async function autoContract() {
 		await (defyBusdApeAuto = new web3.eth.Contract(apePoolABI, defyBusdApeAddress))
         await (elkAvaxAuto = new web3.eth.Contract(apePoolABI, elkAvaxAddress))
 		await (kinsElkAuto = new web3.eth.Contract(apePoolABI, kinsElkAddress))
+        await (yakAvaxAuto = new web3.eth.Contract(apePoolABI, yakAvaxAddress))
+		await (kinsYakAuto = new web3.eth.Contract(apePoolABI, kinsYakAddress))
+        await (pngAvaxAuto = new web3.eth.Contract(apePoolABI, pngAvaxAddress))
+		await (kinsPngAuto = new web3.eth.Contract(apePoolABI, kinsPngAddress))
+        await (gbAvaxAuto = new web3.eth.Contract(apePoolABI, gbAvaxAddress))
+		await (kinsGbAuto = new web3.eth.Contract(apePoolABI, kinsGbAddress))
+        await (joeAvaxAuto = new web3.eth.Contract(apePoolABI, joeAvaxAddress))
+		await (kinsJoeAuto = new web3.eth.Contract(apePoolABI, kinsJoeAddress))
 		
     
 		await (apeContract = new web3.eth.Contract(apeABI, apeAddress))
@@ -93,6 +105,10 @@ async function getApePrices(){
 	let resDefyBusd = await defyBusdApeAuto.methods.getReserves().call()
 	let roundData = await priceFeed.methods.latestRoundData().call()
 	let resElkAvax = await elkAvaxAuto.methods.getReserves().call()	
+	let resYakAvax = await yakAvaxAuto.methods.getReserves().call()	
+	let resPngAvax = await pngAvaxAuto.methods.getReserves().call()	
+	let resGbAvax = await gbAvaxAuto.methods.getReserves().call()	
+	let resJoeAvax = await joeAvaxAuto.methods.getReserves().call()	
 	currentBnbPriceToUsd = roundData.answer / 1e8
 	
 	currentApeBnbToDefy = await apeContract.methods.quote(toHexString(1e18), resDefyBnb._reserve1, resDefyBnb._reserve0).call() / 1e18
@@ -103,6 +119,10 @@ async function getApePrices(){
 	currentApeBusdToDefy = await ilpAuto.methods.getKinsPrice(2).call() / 1e18
     
     currentAvaxToElk = await apeContract.methods.quote(toHexString(1e18), resElkAvax._reserve1, resElkAvax._reserve0).call() / 1e18
+    currentAvaxToYak = await apeContract.methods.quote(toHexString(1e18), resYakAvax._reserve0, resYakAvax._reserve1).call() / 1e18
+    currentAvaxToPng = await apeContract.methods.quote(toHexString(1e18), resPngAvax._reserve0, resPngAvax._reserve1).call() / 1e18
+    currentAvaxToGb = await apeContract.methods.quote(toHexString(1e18), resGbAvax._reserve0, resGbAvax._reserve1).call() / 1e27
+    currentAvaxToJoe = await apeContract.methods.quote(toHexString(1e18), resJoeAvax._reserve0, resJoeAvax._reserve1).call() / 1e18
     
 	
 //	$('.defy-bnb-price')[0].innerHTML = '1 BNB = ~'+currentApeBnbToDefy.toFixed(2)+' DEFY'
@@ -129,25 +149,30 @@ async function autoBalances(pid){
     
    }  
 
-
+let totalalloc = 650*2
+    
 	if(pid == 3){
 		let kinspoolInfo = await farmAuto.methods.poolInfo(3).call()
     
 		let kinsInFarm = parseInt(kinspoolInfo.lpSupply) / 1e18
 
-		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( 110/10 * (kinsInFarm)) * 100).toFixed(2) + '%'
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/100 * (kinsInFarm)) * 100).toFixed(2) + '%'
 	}
 	if(pid == 4){
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
-		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( 110/20 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/200 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
 	}
     if(pid == 5){
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
-		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( 110/20 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/200 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
 	}
     if(pid == 6){
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
-		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( 110/5 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/50 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
+	}
+    if(pid > 6){
+		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/25 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
 	}
 
 }
@@ -160,6 +185,14 @@ function getLiqTotals(pid){
 		getApeDefyBusdLiq(pid)
     if(pid == 6)
 		getKinsElkLiq(pid)
+    if(pid == 7)
+		getKinsYakLiq(pid)
+    if(pid == 8)
+		getKinsPngLiq(pid)
+    if(pid == 9)
+		getKinsGbLiq(pid)
+    if(pid == 10)
+		getKinsJoeLiq(pid)
 
 
 }
@@ -202,6 +235,50 @@ async function getKinsElkLiq(pid){
 	let token1Pool = await elkAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token1Dec
 			
 	pools[pid].lpTokenValueTotal = (currentBnbPriceToUsd * currentAvaxToElk * token1Pool) + (token0Pool * currentApeBusdToDefy)
+
+	let totalLiqInFarm = pools[pid].lpTokenValueTotal * (pools[pid].lpInFarm*1e18) / (pools[pid].totalSupply*1e18)
+	
+//	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
+	$('.total-pool-liq-'+pid)[0].innerHTML = "" + pools[pid].lpTokenValueTotal.toFixed(2)+'$'
+}
+async function getKinsYakLiq(pid){
+	let token0Pool = await defyAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token0Dec
+	let token1Pool = await yakAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token1Dec
+			
+	pools[pid].lpTokenValueTotal = (currentBnbPriceToUsd * currentAvaxToYak * token1Pool) + (token0Pool * currentApeBusdToDefy)
+
+	let totalLiqInFarm = pools[pid].lpTokenValueTotal * (pools[pid].lpInFarm*1e18) / (pools[pid].totalSupply*1e18)
+	
+//	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
+	$('.total-pool-liq-'+pid)[0].innerHTML = "" + pools[pid].lpTokenValueTotal.toFixed(2)+'$'
+}
+async function getKinsPngLiq(pid){
+	let token0Pool = await defyAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token0Dec
+	let token1Pool = await pngAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token1Dec
+			
+	pools[pid].lpTokenValueTotal = (currentBnbPriceToUsd * currentAvaxToPng * token1Pool) + (token0Pool * currentApeBusdToDefy)
+
+	let totalLiqInFarm = pools[pid].lpTokenValueTotal * (pools[pid].lpInFarm*1e18) / (pools[pid].totalSupply*1e18)
+	
+//	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
+	$('.total-pool-liq-'+pid)[0].innerHTML = "" + pools[pid].lpTokenValueTotal.toFixed(2)+'$'
+}
+async function getKinsGbLiq(pid){
+	let token0Pool = await defyAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token0Dec
+	let token1Pool = await gbAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token1Dec
+			
+	pools[pid].lpTokenValueTotal =(currentBnbPriceToUsd * currentAvaxToGb * token1Pool) + (token0Pool * currentApeBusdToDefy)
+
+	let totalLiqInFarm = pools[pid].lpTokenValueTotal * (pools[pid].lpInFarm*1e18) / (pools[pid].totalSupply*1e18)
+	
+//	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
+	$('.total-pool-liq-'+pid)[0].innerHTML = "" + pools[pid].lpTokenValueTotal.toFixed(2)+'$'
+}
+async function getKinsJoeLiq(pid){
+	let token0Pool = await defyAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token0Dec
+	let token1Pool = await joeAuto.methods.balanceOf(pools[pid].addr).call() / pools[pid].token1Dec
+			
+	pools[pid].lpTokenValueTotal = (currentBnbPriceToUsd * currentAvaxToJoe * token1Pool) + (token0Pool * currentApeBusdToDefy)
 
 	let totalLiqInFarm = pools[pid].lpTokenValueTotal * (pools[pid].lpInFarm*1e18) / (pools[pid].totalSupply*1e18)
 	
