@@ -475,6 +475,10 @@ pools.push( { name: 'KINS-GB', addr: "0x9637FDAf9336998A926Db58DA5c5A3011ce057aF
 pools.push( { name: 'KINS-JOE', addr: "0x0A44da57eCED3F21433dc9Ee345619274feE8Fc4", ilp: true,
 	token0: defy, token1: joe, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
 		pid: 10, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+
+pools.push( { name: 'WAVAX', addr: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7", ilp: false,
+	token0: wbnb, token1: wbnb, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
+		pid: 11, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 				
 const user = {
     address: undefined,
@@ -626,7 +630,7 @@ function updateDepositAmount(pid){
 	console.log(depositAmount)
 }
 async function maxDeposit(pid){
-	$('.deposit-input-'+pid)[0].value = pools[pid].userBal / 1e18
+	$('.deposit-input-'+pid)[0].value = (pools[pid].userBal / 1e18)
 	depositAmount = pools[pid].userBal
 }
 async function deposit(pid){
@@ -709,7 +713,7 @@ async function userInfo(pid){
 	pools[pid].userDep = parseInt(userInfo.deposit)
 	let userShare = amount / pools[pid].lpInFarm * 100
 	$('.userInfo-amount-'+pid)[0].innerHTML = " " +amount.toFixed(9)
-	if(pid > 3){
+	if(pid > 3 && pid != 11){
 	$('.userInfo-value-'+pid)[0].innerHTML = " " +(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+"$" 
 	}
 	//$('.userInfo-share-'+pid)[0].innerHTML = ' ' +userShare.toFixed(4)+"%"  
@@ -722,8 +726,13 @@ async function userInfo(pid){
 			$('.my-pool-'+pid)[0].innerHTML = ' ' + pools[pid].name+ ': '+amount.toFixed(4)+' (~'+(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+'$)'
 		*/
 	} 
+    if(pid == 11){
+
+			$('.userInfo-value-'+pid)[0].innerHTML =  " " +(amount * currentBnbPriceToUsd).toFixed(2)+"$"
+			
+	} 
 	
-	if(pid >3){
+	if(pid >3 && pid != 11){
 	//ILP Stuff
 	if(userInfo.daysSinceDeposit > 10000 )
 		$('.userInfo-days-'+pid)[0].innerHTML = ' 0'

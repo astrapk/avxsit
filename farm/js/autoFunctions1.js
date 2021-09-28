@@ -112,7 +112,7 @@ async function getApePrices(){
 	currentBnbPriceToUsd = roundData.answer / 1e8
 	
 	currentApeBnbToDefy = await apeContract.methods.quote(toHexString(1e18), resDefyBnb._reserve1, resDefyBnb._reserve0).call() / 1e18
-	currentApeDefyToBnb = await apeContract.methods.quote(toHexString(1e18), resDefyBusd._reserve0, resDefyBusd._reserve1).call() / 1e18
+	currentApeDefyToBnb = await apeContract.methods.quote(toHexString(1e18), resDefyBnb._reserve0, resDefyBnb._reserve1).call() / 1e18
 /* 	console.log(currentApeBnbToDefy)
 	console.log(currentApeDefyToBnb) */
 	
@@ -134,7 +134,7 @@ async function getApePrices(){
 }
 async function autoBalances(pid){
 	let contract = pools[pid].contract
-   if (pid > 3){
+   if (pid > 3 && pid != 11){
 	let swapContract = pools[pid].swapContract
 
 	rewardPerYear = parseInt(await farmAuto.methods.kinsPerBlock().call()) * 60 * 60 * 24 * 365 / 1e18
@@ -149,7 +149,7 @@ async function autoBalances(pid){
     
    }  
 
-let totalalloc = 650*2
+let totalalloc = 675*2
     
 	if(pid == 3){
 		let kinspoolInfo = await farmAuto.methods.poolInfo(3).call()
@@ -170,7 +170,14 @@ let totalalloc = 650*2
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
 		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/50 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
 	}
-    if(pid > 6){
+    if(pid == 11){
+		let wavaxpoolInfo = await farmAuto.methods.poolInfo(11).call()
+    
+		let wavaxInFarm = parseInt(wavaxpoolInfo.lpSupply) / 1e18
+
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/25 * (wavaxInFarm * currentApeBnbToDefy)) * 100).toFixed(2) + '%'
+	}
+    if(pid > 6  && pid != 11){
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
 		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/25 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
 	}
@@ -193,6 +200,8 @@ function getLiqTotals(pid){
 		getKinsGbLiq(pid)
     if(pid == 10)
 		getKinsJoeLiq(pid)
+    if(pid == 11)
+		getWavaxLiq(pid)
 
 
 }
@@ -284,4 +293,15 @@ async function getKinsJoeLiq(pid){
 	
 //	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
 	$('.total-pool-liq-'+pid)[0].innerHTML = "" + pools[pid].lpTokenValueTotal.toFixed(2)+'$'
+}
+async function getWavaxLiq(pid){
+
+	let wavaxpoolInfo = await farmAuto.methods.poolInfo(11).call()
+    
+	let wavaxInFarm = parseInt(wavaxpoolInfo.lpSupply) / 1e18
+
+	let totalLiqInFarm = currentBnbPriceToUsd * (wavaxInFarm)
+	
+//	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
+	$('.total-pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
 }
