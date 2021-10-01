@@ -394,6 +394,12 @@ let joeAvaxAuto = undefined
 const kinsJoeAddress = "0x0A44da57eCED3F21433dc9Ee345619274feE8Fc4"
 let kinsJoeAuto = undefined
 
+const teddyAvaxAddress = "0x4F20E367B10674cB45Eb7ede68c33B702E1Be655"
+let teddyAvaxAuto = undefined
+
+const kinsTeddyAddress = "0x2DD9Cbac2abCa3954081D835b0106847d6a29308"
+let kinsTeddyAuto = undefined
+
 const network = 'https://api.avax.network/ext/bc/C/rpc'
 
 const defy = '0x894Aa2D0D3e63471C5FfbD22a8A95C8476826cF9'
@@ -413,6 +419,9 @@ let gbContract = undefined
 
 const joe = '0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd'
 let joeContract = undefined
+
+const teddy = '0x094bd7b2d99711a1486fb94d4395801c6d0fddcc'
+let teddyContract = undefined
 
 const ilp = '0xF8707399BCf30b58FD276d44646dbF1cb6D28B31'
 let ilpContract = undefined
@@ -479,6 +488,10 @@ pools.push( { name: 'KINS-JOE', addr: "0x0A44da57eCED3F21433dc9Ee345619274feE8Fc
 pools.push( { name: 'WAVAX', addr: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7", ilp: false,
 	token0: wbnb, token1: wbnb, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
 		pid: 11, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+
+pools.push( { name: 'KINS-TEDDY', addr: "0x2DD9Cbac2abCa3954081D835b0106847d6a29308", ilp: false,
+	token0: defy, token1: teddy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
+		pid: 12, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 				
 const user = {
     address: undefined,
@@ -556,6 +569,7 @@ async function initContracts(){
 		await (pngContract = new web3.eth.Contract(defyABI, png))
 		await (gbContract = new web3.eth.Contract(defyABI, gb))
 		await (joeContract = new web3.eth.Contract(defyABI, joe))
+		await (teddyContract = new web3.eth.Contract(defyABI, teddy))
 		await (busdContract = new web3.eth.Contract(poolABI, busd))
 		await (ilpContract = new web3.eth.Contract(ilpABI, ilp))
 		await (farmContract = new web3.eth.Contract(farmABI, farmAddress))
@@ -732,7 +746,7 @@ async function userInfo(pid){
 			
 	} 
 	
-	if(pid >3 && pid != 11){
+	if(pid > 3 && pid < 11){
 	//ILP Stuff
 	if(userInfo.daysSinceDeposit > 10000 )
 		$('.userInfo-days-'+pid)[0].innerHTML = ' 0'
