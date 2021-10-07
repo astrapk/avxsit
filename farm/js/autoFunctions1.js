@@ -179,7 +179,7 @@ let totalalloc = 800*2
     
 		let kinsInFarm = parseInt(kinspoolInfo.lpSupply) / 1e18
 
-		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/100 * (kinsInFarm)) * 100).toFixed(2) + '%'
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/200 * (kinsInFarm)) * 100).toFixed(2) + '%'
 	}
 	if(pid == 4){
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
@@ -207,9 +207,9 @@ let totalalloc = 800*2
     if(pid == 13){
 		let flumepoolInfo = await farmAuto2.methods.poolInfo(0).call()
     
-		let flumeInFarm = parseInt(flumepoolInfo.lpSupply) * currentAvaxToFlume / currentApeBnbToDefy / 1e9
+		let flumeInFarm = parseInt(flumepoolInfo.lpSupply) * currentAvaxToFlume * currentApeBnbToDefy / 1e9
 
-		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear2 / ( 2000/1000 * (flumeInFarm)) * 100).toFixed(2) + '%'
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear2 / (flumeInFarm) * 100).toFixed(2) + '%'
 	}
 
 }
