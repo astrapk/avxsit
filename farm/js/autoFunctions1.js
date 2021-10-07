@@ -209,7 +209,7 @@ let totalalloc = 800*2
     
 		let flumeInFarm = parseInt(flumepoolInfo.lpSupply) * currentAvaxToFlume / currentApeBnbToDefy / 1e9
 
-		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear2 / ( 1000/1000 * (flumeInFarm)) * 100).toFixed(2) + '%'
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear2 / ( 2000/1000 * (flumeInFarm)) * 100).toFixed(2) + '%'
 	}
 
 }
