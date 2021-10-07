@@ -20,6 +20,7 @@ async function autoContract() {
 		}
 			
 		await (farmAuto = new web3.eth.Contract(farmABI, farmAddress))
+		await (farmAuto2 = new web3.eth.Contract(farm2ABI, farmAddress2))
 		await (defyAuto = new web3.eth.Contract(defyABI, defy))
 		await (wbnbAuto = new web3.eth.Contract(wbnbABI, wbnb))
 		await (busdAuto = new web3.eth.Contract(wbnbABI, busd))
@@ -29,6 +30,7 @@ async function autoContract() {
 		await (gbAuto = new web3.eth.Contract(defyABI, gb))
 		await (joeAuto = new web3.eth.Contract(defyABI, joe))
 		await (teddyAuto = new web3.eth.Contract(defyABI, teddy))
+		await (flumeAuto = new web3.eth.Contract(defyABI, flume))
 		await (ilpAuto = new web3.eth.Contract(ilpABI, ilp))
 		
     
@@ -47,6 +49,7 @@ async function autoContract() {
         await (joeAvaxAuto = new web3.eth.Contract(apePoolABI, joeAvaxAddress))
 		await (kinsJoeAuto = new web3.eth.Contract(apePoolABI, kinsJoeAddress))
         await (teddyAvaxAuto = new web3.eth.Contract(apePoolABI, teddyAvaxAddress))
+        await (flumeAvaxAuto = new web3.eth.Contract(apePoolABI, flumeAvaxAddress))
 		await (kinsTeddyAuto = new web3.eth.Contract(apePoolABI, kinsTeddyAddress))
 		
     
@@ -101,6 +104,7 @@ let walletInt
 
 let currentApeBnbToDefy
 let currentApeDefyToBnb
+let currentAvaxToFlume
 
 let currentApeBusdToDefy = 0
 async function getApePrices(){
@@ -113,6 +117,7 @@ async function getApePrices(){
 	let resGbAvax = await gbAvaxAuto.methods.getReserves().call()	
 	let resJoeAvax = await joeAvaxAuto.methods.getReserves().call()	
 	let resTeddyAvax = await teddyAvaxAuto.methods.getReserves().call()	
+	let resFlumeAvax = await flumeAvaxAuto.methods.getReserves().call()	
 	currentBnbPriceToUsd = roundData.answer / 1e8
 	
 	currentApeBnbToDefy = await apeContract.methods.quote(toHexString(1e18), resDefyBnb._reserve1, resDefyBnb._reserve0).call() / 1e18
@@ -128,6 +133,7 @@ async function getApePrices(){
     currentAvaxToGb = await apeContract.methods.quote(toHexString(1e18), resGbAvax._reserve0, resGbAvax._reserve1).call() / 1e27
     currentAvaxToJoe = await apeContract.methods.quote(toHexString(1e18), resJoeAvax._reserve0, resJoeAvax._reserve1).call() / 1e18
     currentAvaxToTeddy = await apeContract.methods.quote(toHexString(1e18), resTeddyAvax._reserve0, resTeddyAvax._reserve1).call() / 1e18
+    currentAvaxToFlume = await apeContract.methods.quote(toHexString(1e18), resFlumeAvax._reserve0, resFlumeAvax._reserve1).call() / 1e27
     
 	
 //	$('.defy-bnb-price')[0].innerHTML = '1 BNB = ~'+currentApeBnbToDefy.toFixed(2)+' DEFY'
@@ -139,7 +145,7 @@ async function getApePrices(){
 }
 async function autoBalances(pid){
 	let contract = pools[pid].contract
-   if (pid > 3 && pid != 11){
+   if (pid > 3 && pid != 11 && pid != 13){
 	let swapContract = pools[pid].swapContract
 
 	rewardPerYear = parseInt(await farmAuto.methods.kinsPerBlock().call()) * 60 * 60 * 24 * 365 / 1e18
@@ -153,6 +159,18 @@ async function autoBalances(pid){
 	pools[pid].totalSupply = parseInt(await contract.methods.totalSupply().call()) / 1e18
     
    }  
+        if(pid == 13 ){
+        
+    rewardPerYear2 = parseInt(await farmAuto2.methods.rewardPerBlock().call()) * 30 * 60 * 24 * 365 / 1e18
+    
+	pools[pid].lpInFarm = parseInt(await contract.methods.balanceOf(farmAddress2).call()) / 1e9
+
+
+	
+	pools[pid].totalSupply = parseInt(await contract.methods.totalSupply().call()) / 1e9
+
+    }
+
 
 let totalalloc = 800*2
     
@@ -182,9 +200,16 @@ let totalalloc = 800*2
 
 		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/25 * (wavaxInFarm * currentApeBnbToDefy)) * 100).toFixed(2) + '%'
 	}
-    if(pid > 6  && pid != 11){
+    if(pid > 6  && pid != 11 && pid != 13){
 		pools[pid].defyBal = parseInt(await defyAuto.methods.balanceOf(pools[pid].addr).call()) / 1e18
 		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear / ( totalalloc/25 * (pools[pid].lpInFarm / pools[pid].totalSupply) * pools[pid].defyBal) * 100).toFixed(2) + '%'
+	}
+    if(pid == 13){
+		let flumepoolInfo = await farmAuto2.methods.poolInfo(0).call()
+    
+		let flumeInFarm = parseInt(flumepoolInfo.lpSupply) * currentAvaxToFlume / currentApeBnbToDefy / 1e9
+
+		$('.pool-apy-'+pid)[0].innerHTML = '' + (rewardPerYear2 / ( 1000/1000 * (flumeInFarm)) * 100).toFixed(2) + '%'
 	}
 
 }
@@ -209,6 +234,8 @@ function getLiqTotals(pid){
 		getWavaxLiq(pid)
     if(pid == 12)
 		getKinsTeddyLiq(pid)
+    if(pid == 13)
+		getFlumeLiq(pid)
 
 
 }
@@ -322,4 +349,17 @@ async function getKinsTeddyLiq(pid){
 	
 //	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
 	$('.total-pool-liq-'+pid)[0].innerHTML = "" + pools[pid].lpTokenValueTotal.toFixed(2)+'$'
+}
+async function getFlumeLiq(pid){
+    
+		let flumepoolInfo = await farmAuto2.methods.poolInfo(0).call()
+    
+		let flumeInFarm = parseInt(flumepoolInfo.lpSupply) * currentAvaxToFlume  / 1e9
+        pools[pid].lpTokenValueTotal = currentAvaxToFlume * currentBnbPriceToUsd
+
+	let totalLiqInFarm = currentBnbPriceToUsd * (flumeInFarm)
+	
+//	$('.pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
+	$('.total-pool-liq-'+pid)[0].innerHTML = "" + totalLiqInFarm.toFixed(2)+'$'
+
 }

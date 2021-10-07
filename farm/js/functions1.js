@@ -1,5 +1,7 @@
 const farmABI = [{"type":"constructor","stateMutability":"nonpayable","inputs":[{"type":"address","name":"_kins","internalType":"contract PumpKinsFarm"},{"type":"address","name":"_devaddr","internalType":"address"},{"type":"address","name":"_feeAddress","internalType":"address"},{"type":"uint256","name":"_startBlock","internalType":"uint256"}]},{"type":"event","name":"Deposit","inputs":[{"type":"address","name":"user","internalType":"address","indexed":true},{"type":"uint256","name":"pid","internalType":"uint256","indexed":true},{"type":"uint256","name":"amount","internalType":"uint256","indexed":false}],"anonymous":false},{"type":"event","name":"EmergencyWithdraw","inputs":[{"type":"address","name":"user","internalType":"address","indexed":true},{"type":"uint256","name":"pid","internalType":"uint256","indexed":true},{"type":"uint256","name":"amount","internalType":"uint256","indexed":false}],"anonymous":false},{"type":"event","name":"OwnershipTransferred","inputs":[{"type":"address","name":"previousOwner","internalType":"address","indexed":true},{"type":"address","name":"newOwner","internalType":"address","indexed":true}],"anonymous":false},{"type":"event","name":"Withdraw","inputs":[{"type":"address","name":"user","internalType":"address","indexed":true},{"type":"uint256","name":"pid","internalType":"uint256","indexed":true},{"type":"uint256","name":"amount","internalType":"uint256","indexed":false}],"anonymous":false},{"type":"event","name":"feeAddressUpdated","inputs":[{"type":"address","name":"","internalType":"address","indexed":false}],"anonymous":false},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"BONUS_MULTIPLIER","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"add","inputs":[{"type":"uint256","name":"_allocPoint","internalType":"uint256"},{"type":"uint256","name":"_depositFee","internalType":"uint256"},{"type":"address","name":"_lpToken","internalType":"contract IERC20"},{"type":"address","name":"_token0","internalType":"contract IERC20"},{"type":"address","name":"_token1","internalType":"contract IERC20"},{"type":"bool","name":"_offerILP","internalType":"bool"},{"type":"bool","name":"_withUpdate","internalType":"bool"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"extraKins","internalType":"uint256"}],"name":"checkForIL","inputs":[{"type":"uint256","name":"pid","internalType":"uint256"},{"type":"address","name":"userAddr","internalType":"address"}]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"deposit","inputs":[{"type":"uint256","name":"_pid","internalType":"uint256"},{"type":"uint256","name":"_amount","internalType":"uint256"}]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"dev","inputs":[{"type":"address","name":"_devaddr","internalType":"address"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"address","name":"","internalType":"address"}],"name":"devaddr","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"emergencyWithdraw","inputs":[{"type":"uint256","name":"_pid","internalType":"uint256"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"address","name":"","internalType":"contract Farm_Vault"}],"name":"farmVault","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"address","name":"","internalType":"address"}],"name":"feeAddress","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"daysSinceDeposit","internalType":"uint256"}],"name":"getDaysSinceDeposit","inputs":[{"type":"uint256","name":"pid","internalType":"uint256"},{"type":"address","name":"userAddr","internalType":"address"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"getMultiplier","inputs":[{"type":"uint256","name":"_from","internalType":"uint256"},{"type":"uint256","name":"_to","internalType":"uint256"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"deposit","internalType":"uint256"},{"type":"uint256","name":"rewardDebt","internalType":"uint256"},{"type":"uint256","name":"daysSinceDeposit","internalType":"uint256"},{"type":"uint256","name":"depVal","internalType":"uint256"}],"name":"getUserInfo","inputs":[{"type":"uint256","name":"pid","internalType":"uint256"},{"type":"address","name":"userAddr","internalType":"address"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"address","name":"","internalType":"contract ImpermanentLossProtection"}],"name":"ilp","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"address","name":"","internalType":"contract PumpKinsFarm"}],"name":"kins","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"kinsPerBlock","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"massUpdatePools","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"massUpdatePoolsFarmV","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"nextUpdateBlock","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"address","name":"","internalType":"address"}],"name":"owner","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"pendingkins","inputs":[{"type":"uint256","name":"_pid","internalType":"uint256"},{"type":"address","name":"_user","internalType":"address"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"address","name":"lpToken","internalType":"contract IERC20"},{"type":"uint256","name":"allocPoint","internalType":"uint256"},{"type":"uint256","name":"depositFee","internalType":"uint256"},{"type":"uint256","name":"lastRewardBlock","internalType":"uint256"},{"type":"uint256","name":"acckinsPerShare","internalType":"uint256"},{"type":"uint256","name":"lpSupply","internalType":"uint256"},{"type":"address","name":"token0","internalType":"contract IERC20"},{"type":"address","name":"token1","internalType":"contract IERC20"},{"type":"bool","name":"impermanentLossProtection","internalType":"bool"}],"name":"poolInfo","inputs":[{"type":"uint256","name":"","internalType":"uint256"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"poolLength","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"renounceOwnership","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"set","inputs":[{"type":"uint256","name":"_pid","internalType":"uint256"},{"type":"uint256","name":"_allocPoint","internalType":"uint256"},{"type":"uint256","name":"_depositFee","internalType":"uint256"},{"type":"address","name":"_lpToken","internalType":"address"},{"type":"address","name":"_token0","internalType":"contract IERC20"},{"type":"address","name":"_token1","internalType":"contract IERC20"},{"type":"bool","name":"_offerILP","internalType":"bool"},{"type":"bool","name":"_withUpdate","internalType":"bool"}]},{"type":"function","stateMutability":"nonpayable","outputs":[{"type":"bool","name":"","internalType":"bool"}],"name":"setFarmVault","inputs":[{"type":"address","name":"_farmvault","internalType":"contract Farm_Vault"}]},{"type":"function","stateMutability":"nonpayable","outputs":[{"type":"bool","name":"","internalType":"bool"}],"name":"setFeeAddress","inputs":[{"type":"address","name":"_feeAddress","internalType":"address"}]},{"type":"function","stateMutability":"nonpayable","outputs":[{"type":"bool","name":"","internalType":"bool"}],"name":"setImpermanentLossProtection","inputs":[{"type":"address","name":"_ilp","internalType":"address"}]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"setstartblock","inputs":[{"type":"uint256","name":"sblock","internalType":"uint256"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"startBlock","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"totalAllocPoint","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"totalRewarded","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"transferOwnership","inputs":[{"type":"address","name":"newOwner","internalType":"address"}]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"updateMultiplier","inputs":[{"type":"uint256","name":"multiplierNumber","internalType":"uint256"}]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"updateReward","inputs":[{"type":"uint256","name":"reward","internalType":"uint256"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"amount","internalType":"uint256"},{"type":"uint256","name":"rewardDebt","internalType":"uint256"},{"type":"uint256","name":"depositTime","internalType":"uint256"},{"type":"uint256","name":"depVal","internalType":"uint256"}],"name":"userInfo","inputs":[{"type":"uint256","name":"","internalType":"uint256"},{"type":"address","name":"","internalType":"address"}]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"withdraw","inputs":[{"type":"uint256","name":"_pid","internalType":"uint256"},{"type":"uint256","name":"_amount","internalType":"uint256"}]}]
 
+const farm2ABI = [{"inputs":[{"internalType":"contract IERC20","name":"_rewardToken","type":"address"},{"internalType":"address","name":"_devaddr","type":"address"},{"internalType":"address","name":"_feeAddress","type":"address"},{"internalType":"uint256","name":"_startBlock","type":"uint256"},{"internalType":"uint256","name":"_endBlock","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":true,"internalType":"uint256","name":"pid","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":true,"internalType":"uint256","name":"pid","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"EmergencyWithdraw","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":true,"internalType":"uint256","name":"pid","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Withdraw","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"}],"name":"feeAddressUpdated","type":"event"},{"inputs":[],"name":"BONUS_MULTIPLIER","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_allocPoint","type":"uint256"},{"internalType":"uint256","name":"_depositFee","type":"uint256"},{"internalType":"uint256","name":"_withdrawalFee","type":"uint256"},{"internalType":"contract IERC20","name":"_lpToken","type":"address"},{"internalType":"uint256","name":"_rewardEndBlock","type":"uint256"},{"internalType":"bool","name":"_withUpdate","type":"bool"}],"name":"add","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_devaddr","type":"address"}],"name":"dev","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"devaddr","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"}],"name":"emergencyWithdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"endBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feeAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"pid","type":"uint256"},{"internalType":"address","name":"userAddr","type":"address"}],"name":"getDaysSinceDeposit","outputs":[{"internalType":"uint256","name":"daysSinceDeposit","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_from","type":"uint256"},{"internalType":"uint256","name":"_to","type":"uint256"}],"name":"getMultiplier","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"pid","type":"uint256"},{"internalType":"address","name":"userAddr","type":"address"}],"name":"getUserInfo","outputs":[{"internalType":"uint256","name":"deposit","type":"uint256"},{"internalType":"uint256","name":"rewardDebt","type":"uint256"},{"internalType":"uint256","name":"daysSinceDeposit","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"massUpdatePools","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"address","name":"_user","type":"address"}],"name":"pendingReward","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"poolInfo","outputs":[{"internalType":"contract IERC20","name":"lpToken","type":"address"},{"internalType":"uint256","name":"allocPoint","type":"uint256"},{"internalType":"uint256","name":"depositFee","type":"uint256"},{"internalType":"uint256","name":"withdrawalFee","type":"uint256"},{"internalType":"uint256","name":"lastRewardBlock","type":"uint256"},{"internalType":"uint256","name":"acckinsPerShare","type":"uint256"},{"internalType":"uint256","name":"lpSupply","type":"uint256"},{"internalType":"uint256","name":"rewardEndBlock","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"poolLength","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"rewardPerBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"rewardToken","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_allocPoint","type":"uint256"},{"internalType":"uint256","name":"_depositFee","type":"uint256"},{"internalType":"uint256","name":"_withdrawalFee","type":"uint256"},{"internalType":"uint256","name":"_rewardEndBlock","type":"uint256"},{"internalType":"bool","name":"_withUpdate","type":"bool"}],"name":"set","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_feeAddress","type":"address"}],"name":"setFeeAddress","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"sblock","type":"uint256"}],"name":"setstartblock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"startBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"taxRatio","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalAllocPoint","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"multiplierNumber","type":"uint256"}],"name":"updateMultiplier","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_reward","type":"uint256"},{"internalType":"uint256","name":"_endBlock","type":"uint256"}],"name":"updateReward","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tax","type":"uint256"}],"name":"updateTaxRatio","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"address","name":"","type":"address"}],"name":"userInfo","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"rewardDebt","type":"uint256"},{"internalType":"uint256","name":"depositTime","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_pid","type":"uint256"},{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdrawRemainder","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+
 const defyABI = [{"inputs":[{"internalType":"address","name":"_WKinsIlp","type":"address"},{"internalType":"address","name":"_WDev","type":"address"},{"internalType":"address","name":"_WFarm","type":"address"},{"internalType":"address","name":"_WMarketing","type":"address"},{"internalType":"bool","name":"_takeFee","type":"bool"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"}],"name":"ExcludeFromFee","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"}],"name":"IncludeInFee","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"}],"name":"NewDeveloper","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"TakeFee","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"WDev","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"WFarm","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"WKinsIlp","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"WKinsmaster","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"WMarketing","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"excludeFromFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"includeInFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isExcludedFromFee","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_Wdev","type":"address"}],"name":"setDev","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"_takefee","type":"bool"}],"name":"setTakeFee","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_WKinsIlp","type":"address"}],"name":"setWKinsIlp","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_kinsmaster","type":"address"}],"name":"setWKinsmaster","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_wmarketing","type":"address"}],"name":"setWMarketing","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"totalBurn","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalFees","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 
 const wbnbABI = [{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"account","type":"address"}],"name":"PauserAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"account","type":"address"}],"name":"PauserRemoved","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"constant":true,"inputs":[],"name":"ERR_INVALID_ZERO_VALUE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"ERR_NO_ERROR","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"addPauser","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"deposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isPauser","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"pause","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"renouncePauser","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"unpause","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]
@@ -346,6 +348,7 @@ const priceFeedAddress = "0x0A77230d17318075983913bC2145DB16C7366156";
 let priceFeed = undefined
 
 let farmAuto = undefined
+let farmAuto2 = undefined
 let defyAuto = undefined
 let wbnbAuto = undefined
 let busdAuto = undefined
@@ -397,6 +400,9 @@ let kinsJoeAuto = undefined
 const teddyAvaxAddress = "0x4F20E367B10674cB45Eb7ede68c33B702E1Be655"
 let teddyAvaxAuto = undefined
 
+const flumeAvaxAddress = "0x38671160FD86cC03C4efFF3A4191Df278Ad30389"
+let flumeAvaxAuto = undefined
+
 const kinsTeddyAddress = "0x2DD9Cbac2abCa3954081D835b0106847d6a29308"
 let kinsTeddyAuto = undefined
 
@@ -423,6 +429,9 @@ let joeContract = undefined
 const teddy = '0x094bd7b2d99711a1486fb94d4395801c6d0fddcc'
 let teddyContract = undefined
 
+const flume = '0x39a54a4a087854d847aab84a8117edccda85a8c6'
+let flumeContract = undefined
+
 const ilp = '0xF8707399BCf30b58FD276d44646dbF1cb6D28B31'
 let ilpContract = undefined
 
@@ -435,6 +444,8 @@ let busdContract = undefined
 const farmAddress = "0xcB4b619372Cb427c2ef16a9E7b364e2867D9f1D8"
 let farmContract = undefined
 
+const farmAddress2 = "0xb15CbBb6A9C79C957452C847DAec313542149E19"
+let farm2Contract = undefined
 
 var pools = []
 //ApeSwap Pools	
@@ -492,6 +503,10 @@ pools.push( { name: 'WAVAX', addr: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
 pools.push( { name: 'KINS-TEDDY', addr: "0x2DD9Cbac2abCa3954081D835b0106847d6a29308", ilp: false,
 	token0: defy, token1: teddy, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e18, token1Dec: 1e18, lpTokenValueTotal: 0, 
 		pid: 12, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
+
+pools.push( { name: 'FLUME', addr: "0x39a54a4a087854d847aab84a8117edccda85a8c6", ilp: false,
+	token0: flume, token1: flume, contract: '', swapContract: '', swapAddr: apeAddress, token0Dec: 1e9, token1Dec: 1e9, lpTokenValueTotal: 0, 
+		pid: 0, userDep: 0, defyBal: 0, ABI: apePoolABI, swapABI: apeABI } )
 				
 const user = {
     address: undefined,
@@ -570,9 +585,11 @@ async function initContracts(){
 		await (gbContract = new web3.eth.Contract(defyABI, gb))
 		await (joeContract = new web3.eth.Contract(defyABI, joe))
 		await (teddyContract = new web3.eth.Contract(defyABI, teddy))
+		await (flumeContract = new web3.eth.Contract(defyABI, flume))
 		await (busdContract = new web3.eth.Contract(poolABI, busd))
 		await (ilpContract = new web3.eth.Contract(ilpABI, ilp))
 		await (farmContract = new web3.eth.Contract(farmABI, farmAddress))
+		await (farm2Contract = new web3.eth.Contract(farm2ABI, farmAddress2))
 		runUserStats()
 
 	}catch(e){
@@ -614,7 +631,13 @@ function toHexString(number){
 }
 async function checkAllowance(pid){
 	let contract = pools[pid].contract
-	let allowance = await contract.methods.allowance(user.address, farmAddress).call()
+    let allowance
+    if(pid != 13){
+	allowance = await contract.methods.allowance(user.address, farmAddress).call()
+    }
+    if(pid == 13){
+	allowance = await contract.methods.allowance(user.address, farmAddress2).call()
+    }
 	//console.log("Pool "+pools[pid].name+" allowance: "+allowance/1e18+'.')
 	if(allowance > 1000000 * 1e18)
 		$('.approve-button-'+pid)[0].style.display = "none" ,
@@ -626,6 +649,7 @@ async function checkAllowance(pid){
 async function approve(pid){
 	let contract = pools[pid].contract
 	let amount = toHexString(100000000 * 1e18)
+    if(pid != 13){
 	await contract.methods.approve(farmAddress, amount).send({
 		from: user.address,
 		shouldPollResponse: true,
@@ -637,19 +661,36 @@ async function approve(pid){
 			return res
 		}
 	})
+    }
+    if(pid == 13){
+	await contract.methods.approve(farmAddress2, amount).send({
+		from: user.address,
+		shouldPollResponse: true,
+	}, function(error, res){
+		if(error)
+			console.log(error)
+		else{
+			console.log(res)
+			return res
+		}
+	})
+    }
+	
 }
 let depositAmount = 0
 function updateDepositAmount(pid){
-	depositAmount = $('.deposit-input-'+pid)[0].value * 1e18
+	depositAmount = $('.deposit-input-'+pid)[0].value * pools[pid].token0Dec
 	console.log(depositAmount)
 }
 async function maxDeposit(pid){
-	$('.deposit-input-'+pid)[0].value = (pools[pid].userBal / 1e18)
+	$('.deposit-input-'+pid)[0].value = pools[pid].userBal / pools[pid].token0Dec
 	depositAmount = pools[pid].userBal
 }
 async function deposit(pid){
 	let amount = toHexString(depositAmount)
-	await farmContract.methods.deposit(pid, amount).send({
+    if(pid != 13){
+        
+	await farmContract.methods.deposit(pools[pid].pid, amount).send({
 		from: user.address,
 		shouldPollResponse: true,
 	}, function(error, res){
@@ -660,9 +701,27 @@ async function deposit(pid){
 			return res
 		}
 	})
+    }
+    if(pid == 13){
+
+	await farm2Contract.methods.deposit(0, amount).send({
+		from: user.address,
+		shouldPollResponse: true,
+	}, function(error, res){
+		if(error)
+			console.log(error)
+		else{
+			console.log(res)
+			return res
+		}
+	})
+    }
+    
+	
 }
 async function harvest(pid){
-	await farmContract.methods.deposit(pid, 0).send({
+    if(pid != 13){
+	await farmContract.methods.deposit(pools[pid].pid, 0).send({
 		from: user.address,
 		shouldPollResponse: true,
 	}, function(error, res){
@@ -673,15 +732,34 @@ async function harvest(pid){
 			return res
 		}
 	})
+    }
+    if(pid == 13){
+	await farm2Contract.methods.deposit(0, 0).send({
+		from: user.address,
+		shouldPollResponse: true,
+	}, function(error, res){
+		if(error)
+			console.log(error)
+		else{
+			console.log(res)
+			return res
+		}
+	})
+    }
+    
+	
 }
 let withdrawAmount = 0
 function updateWithdrawAmount(pid){
-	withdrawAmount = $('.withdraw-input-'+pid)[0].value * 1e18
+	withdrawAmount = $('.withdraw-input-'+pid)[0].value * pools[pid].token0Dec
 	console.log(withdrawAmount)
 }
 async function withdraw(pid){
-	let amount = toHexString(withdrawAmount)
-	await farmContract.methods.withdraw(pid, amount).send({
+	
+     let amount = toHexString(withdrawAmount)
+    if(pid != 13){
+       
+	await farmContract.methods.withdraw(pools[pid].pid, amount).send({
 		from: user.address,
 		shouldPollResponse: true,
 	}, function(error, res){
@@ -692,42 +770,85 @@ async function withdraw(pid){
 			return res
 		}
 	})
+    }
+    if(pid == 13){
+
+	await farm2Contract.methods.withdraw(0, amount).send({
+		from: user.address,
+		shouldPollResponse: true,
+	}, function(error, res){
+		if(error)
+			console.log(error)
+		else{
+			console.log(res)
+			return res
+		}
+	})
+    }
+    
+	
 }
 async function maxWithdraw(pid){
-	$('.withdraw-input-'+pid)[0].value = pools[pid].userDep / 1e18
+	$('.withdraw-input-'+pid)[0].value = pools[pid].userDep / pools[pid].token0Dec
 	withdrawAmount = pools[pid].userDep
 }
 
 async function pendingDefy(pid){
-	let pendingDefy = (parseInt(await farmContract.methods.pendingkins(pid, user.address).call()) / 1e18)
+    let pedingReward
+    if(pid != 13){
+	pendingReward= (parseInt(await farmContract.methods.pendingkins(pools[pid].pid, user.address).call()) / 1e18)
+    }
+    if(pid == 13){
+	pendingReward = (parseInt(await farm2Contract.methods.pendingReward(0, user.address).call()) / 1e18)
+    }
+    
+	
 /*	user.harvestable += pendingDefy
 	$('.harvestable')[0].innerHTML = user.harvestable.toFixed(6) */
-	$('.pending-kins-'+pid)[0].innerHTML = " " +pendingDefy.toFixed(5)
+	$('.pending-kins-'+pid)[0].innerHTML = " " +pendingReward.toFixed(6)
 }
 
 async function poolBalance(pid){
 	let contract = pools[pid].contract
 	let lpBalance = await contract.methods.balanceOf(user.address).call()
-	
+    
+    if(pid != 13){
 	pools[pid].lpInFarm = parseInt(await contract.methods.balanceOf(farmAddress).call()) / 1e18
+        
+        
+    }
+    if(pid == 13){
+	pools[pid].lpInFarm = parseInt(await contract.methods.balanceOf(farmAddress2).call()) / 1e18
+        
+        
+    }
+	
+	
 	//$('.pool-liq-'+pid)[0].innerHTML = "Total Staked: " +(pools[pid].lpInFarm).toFixed(4) + " " + pools[pid].name
 	
 	pools[pid].wbnbBal = await wbnbContract.methods.balanceOf(pools[pid].addr).call() / 1e18
 	pools[pid].busdBal = await busdContract.methods.balanceOf(pools[pid].addr).call() / 1e18
 			
 	pools[pid].userBal = lpBalance 
-	$('.user-lp-'+pid)[0].innerHTML = " " +(lpBalance/1e18).toFixed(9)
+	$('.user-lp-'+pid)[0].innerHTML = " " +(lpBalance/pools[pid].token0Dec).toFixed(9)
 }
 
 let userInfoInt
 async function userInfo(pid){
-	let userInfo = await farmContract.methods.getUserInfo(pid, user.address).call()
+    let userInfo
+    if(pid != 13 ){
+	userInfo = await farmContract.methods.getUserInfo(pools[pid].pid, user.address).call()
+    }
+    if(pid == 13){
+	userInfo = await farm2Contract.methods.getUserInfo(0, user.address).call()
+    }
 	
-	let amount = (parseInt(userInfo.deposit) / 1e18)
+	
+	let amount = (parseInt(userInfo.deposit) / pools[pid].token0Dec)
 	pools[pid].userDep = parseInt(userInfo.deposit)
 	let userShare = amount / pools[pid].lpInFarm * 100
 	$('.userInfo-amount-'+pid)[0].innerHTML = " " +amount.toFixed(9)
-	if(pid > 3 && pid != 11){
+	if(pid > 3 && pid != 11 && pid != 13){
 	$('.userInfo-value-'+pid)[0].innerHTML = " " +(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+"$" 
 	}
 	//$('.userInfo-share-'+pid)[0].innerHTML = ' ' +userShare.toFixed(4)+"%"  
@@ -740,12 +861,19 @@ async function userInfo(pid){
 			$('.my-pool-'+pid)[0].innerHTML = ' ' + pools[pid].name+ ': '+amount.toFixed(4)+' (~'+(amount * (pools[pid].lpTokenValueTotal*1e18) / (pools[pid].totalSupply*1e18)).toFixed(2)+'$)'
 		*/
 	} 
+    
     if(pid == 11){
 
 			$('.userInfo-value-'+pid)[0].innerHTML =  " " +(amount * currentBnbPriceToUsd).toFixed(2)+"$"
 			
-	} 
-	
+	}
+    
+    if(pid == 13){
+
+			$('.userInfo-value-'+pid)[0].innerHTML =  " " +(amount * currentAvaxToFlume * currentBnbPriceToUsd).toFixed(2)+"$"
+			
+	}
+    
 	if(pid > 3 && pid < 11){
 	//ILP Stuff
 	if(userInfo.daysSinceDeposit > 10000 )
